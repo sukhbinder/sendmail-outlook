@@ -2,6 +2,8 @@
 import argparse
 import sys
 from win32com.client import Dispatch
+import os
+import tempfile
 
 
 def main():
@@ -24,6 +26,9 @@ def main():
         type=str,
         help="Path to attachment file (optional)",
     )
+
+    parser.add_argument("-ds", "--dont-send", action="store_true", help="Don't send email, only show")
+
     args = parser.parse_args()
 
     outlook = Dispatch("outlook.application")
@@ -43,7 +48,13 @@ def main():
         attachment_path = args.attachment
         mail.Attachments.Add(attachment_path)
 
-    mail.Send()
+    if args.dont_send:
+        temp_dir = tempfile.gettempdir()    
+        msg_file_path = os.path.join(temp_dir, "email.msg")
+        mail.SaveAs(msg_file_path, 3)
+        os.startfile(msg_file_path)
+    else:
+        mail.Send()
 
 
 if __name__ == "__main__":
