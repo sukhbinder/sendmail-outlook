@@ -1,4 +1,4 @@
-# sendmail
+# sendmail-outlook
 Send email using outlook application 
 
 ## Usage
