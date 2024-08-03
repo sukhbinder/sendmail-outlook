@@ -21,4 +21,4 @@ options:
 ```
 
 # Install
-pip install sendmail
+pip install sendmail-outlook
