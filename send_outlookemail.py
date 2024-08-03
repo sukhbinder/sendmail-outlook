@@ -1,10 +1,9 @@
 
 import argparse
 import sys
-from win32com.client import Dispatch
 import os
 import tempfile
-
+from win32com.client import Dispatch
 
 def main():
     parser = argparse.ArgumentParser(description="Sends an email using Outlook")

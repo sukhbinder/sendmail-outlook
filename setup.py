@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="sendemail",
-    version="0.0",
+    version="0.0.1",
     packages=find_packages(),
     license="Private",
     description="send email via outlook",
@@ -25,6 +25,10 @@ setup(
         ],
     },
     install_requires=["pywin32"],
+    extras_require={
+        "test": [
+            "pytest",]
+    },
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
