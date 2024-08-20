@@ -27,7 +27,7 @@ from send_outlookemail import create_parser
 #         assert dispatch_mock.called
 
 def test_create_parser():
-    paser = create_parser()
+    parser = create_parser()
     args = [
     "sendmail",
     "-t",
