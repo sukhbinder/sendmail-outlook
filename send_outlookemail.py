@@ -7,7 +7,7 @@ from win32com.client import Dispatch
 
 def main():
     parser = argparse.ArgumentParser(description="Sends an email using Outlook")
-    parser.add_argument("-t", "--to", required=True, help="Recipient of the email")
+    parser.add_argument("-t", "--to", default="", help="Recipient of the email")
     parser.add_argument(
         "-s", "--subject", default="Message subject", help="Subject of the email"
     )
@@ -30,10 +30,17 @@ def main():
 
     args = parser.parse_args()
 
+    dont_send = args.dont_send
+
+    # If no to is provided, don't send the email just display it.
+    if len(args.to) == 0:
+        dont_send = True
+        
     outlook = Dispatch("outlook.application")
     mail = outlook.CreateItem(0)
     mail.To = args.to
     mail.Subject = args.subject
+    
     if not args.body:
         body = sys.stdin.read()
         mail.Body = body
@@ -47,7 +54,7 @@ def main():
         attachment_path = args.attachment
         mail.Attachments.Add(attachment_path)
 
-    if args.dont_send:
+    if dont_send:
         temp_dir = tempfile.gettempdir()    
         msg_file_path = os.path.join(temp_dir, "email.msg")
         mail.SaveAs(msg_file_path, 3)
