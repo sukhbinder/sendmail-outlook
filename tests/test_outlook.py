@@ -1,6 +1,6 @@
 import sys
 from unittest import mock
-from sendemail.send_outlookemail import main
+from send_outlookemail import main
 
 
 def test_main(tmp_path):
