@@ -5,7 +5,7 @@ import os
 import tempfile
 from win32com.client import Dispatch
 
-def main():
+def create_parser():
     parser = argparse.ArgumentParser(description="Sends an email using Outlook")
     parser.add_argument("-t", "--to", default="", help="Recipient of the email")
     parser.add_argument(
@@ -26,8 +26,12 @@ def main():
         help="Path to attachment file (optional)",
     )
 
-    parser.add_argument("-ds", "--dont-send", action="store_true", help="Don't send email, only show")
+    parser.add_argument("-ds", "--dont-send", action="store_true", help="Don't send email, only show")    
 
+    return parser
+
+def main():
+    parser = create_parser()
     args = parser.parse_args()
 
     dont_send = args.dont_send
