@@ -9,6 +9,7 @@ def test_main(tmp_path):
 
         with mock.patch("os.path.join", return_value=str(tmp_path / "email.msg")):
             args = [
+                "sendmail",
                 "-t",
                 "test@example.com",
                 "-s",
