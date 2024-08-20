@@ -28,8 +28,7 @@ from send_outlookemail import create_parser
 
 def test_create_parser():
     parser = create_parser()
-    args = [
-    "sendmail",
+    margs = [
     "-t",
     "test@example.com",
     "-s",
@@ -39,7 +38,7 @@ def test_create_parser():
     "-hb",
     "<html><body>HTML Test</body></html>",
     "-ds"]
-    args = parser.parse_args(args)
+    args = parser.parse_args(margs)
     assert args.to == "test@example.com"
     assert args.dont_send
     assert args.subject == "Test Subject"
