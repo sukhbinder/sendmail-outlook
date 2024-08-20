@@ -31,7 +31,7 @@ jobs:
         pip install -e '.[test]'
     - name: Run tests
       run: |
-        pytest -s
+        python -m pytest -s
   deploy:
     runs-on: ubuntu-latest
     environment: release
